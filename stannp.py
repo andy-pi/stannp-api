@@ -13,10 +13,8 @@ class StannpClient():
         '''
         Performs a generic API request and returns the JSON response
         '''
-
         if (typeofr == "get"): r = requests.get( endpoint_url, auth=(self.api_key,"") )
-        if (typeofr == "post"): r = requests.post( endpoint_url, data=payload, files=files, auth=(self.api_key,"")) 
-        print r.request.headers
+        if (typeofr == "post"): r = requests.post( endpoint_url, data=payload, files=files, auth=(self.api_key,""))
         return r.json()
 
     def get_balance( self ):
@@ -35,22 +33,20 @@ class StannpClient():
         '''
         Returns a the specified campaign in JSON format
         '''
-        payload={}
-        payload['id']=campaign_id
-        return self.perform_request("https://dash.stannp.com/api/v1/campaigns/get/",  payload=payload, files=None, typeofr="post")
+        address="https://dash.stannp.com/api/v1/campaigns/get/" + str(campaign_id) + "?api_key=" + self.api_key
+        return self.perform_request(address, payload=None, files=None, typeofr="get")
         
     def delete_campaign(self, campaign_id):
         '''
-        ? NOT WORKING
         Deletes a the specified campaign and returns a message
         '''
         payload={}
         payload['id']=campaign_id
-        return self.perform_request("https://dash.stannp.com/api/v1/campaigns/delete", payload=payload, files=None, typeofr="post")
+        return self.perform_request("https://dash.stannp.com/api/v1/campaigns/delete/", payload=payload, files=None, typeofr="post")
         
     def new_campaign(self, name, typeofc, code):
         '''
-        Creates a new campaign give a name, and type of campaign, from the following:
+        Creates a new campaign given a name, and type of campaign, from the following:
         a6-postcard | a5-postcard | dl-postcard | letter-dl 
         '''
         payload={}
@@ -74,8 +70,8 @@ class StannpClient():
         return self.perform_request("https://dash.stannp.com/api/v1/groups/new", typeofr="post", files=None, payload=payload)
         
     def validate_address(self, address):
-        '''
-        ? NOT WORKING
+        ''' Validate an address / recipient, given the supplied information:
+        
         company 	string 	Company name
         address1 	string 	Address line 1
         address2 	string 	Address line 2
@@ -84,10 +80,11 @@ class StannpClient():
         postcode 	string 	Address postal code
         country 	string 	ISO 3166-1 Alpha 2 Country Code (GB,US,FR...)
         '''
-        return self.perform_request("https://dash.stannp.com/api/v1/recipients/validate", payload, files=None, typeofr="post")
+        return self.perform_request("https://dash.stannp.com/api/v1/recipients/validate", payload=address, files=None, typeofr="post")
         
     def new_recipient(self, group_id, on_duplicate, recipient):
-        '''
+        ''' Creates a new recipient, provided the following information
+        
         group_id        int 	The group ID you wish to add the data to.
         on_duplicate 	string 	What to do if a duplicate is found (update/ignore/duplicate)
         firstname   	string 	Recipients first name
@@ -122,14 +119,12 @@ class StannpClient():
         '''
         return self.perform_request("https://dash.stannp.com/api/v1/recipients/list",payload=None, files=None, typeofr="get")
         
-        
     def get_recipient(self, id):
         '''
-        ? NOT WORKING
         Returns the recipient specified in JSON format
         '''
-        address="https://dash.stannp.com/api/v1/recipient/get/" + str(id) + "?api_key=" + self.api_key
-        print address
+        address="https://dash.stannp.com/api/v1/recipients/get/" + str(id) + "?api_key=" + self.api_key
+
         return self.perform_request(address, payload=None, files=None, typeofr="get")
         
     def delete_recipient(self, id):
@@ -141,7 +136,7 @@ class StannpClient():
         return self.perform_request("https://dash.stannp.com/api/v1/recipients/delete", payload, files=None, typeofr="post")
 
     def send_postcard(self, size, test, recipient, front, back, message, signature):
-        '''Sends a postcard and returns a PDF preview
+        '''Sends a postcard and returns an URL of PDF preview
         
         size        mandatory 	Either "A5" or "A6"
         test 	    optional 	If test is set to true then a sample PDF file will be produced but not dispatched and not charged.
@@ -167,9 +162,8 @@ class StannpClient():
         
         
     def send_letter(self, test, template, recipient, background, pages, pdforhtml):
-        '''Sends a letter and returns a PDF preview
+        '''Sends a letter and returns URL for a PDF preview. Note the first page has the address printed on it.
         
-        ? NOT WORKING WITH PDF FILES
         test        optional	If true then a sample PDF file will be produced but the item will not be dispatched or charged for.
         template 	optional 	An ID of a template already set up on the platform.
         recipient 	mandatory 	Either an ID of an existing recipient or a new recipient array.
@@ -187,6 +181,7 @@ class StannpClient():
         if pdforhtml=="pdf":
             files= {'pages': ('pages.pdf', open(pages, 'rb'), 'application/pdf')}
         else:
+            files=None
             payload['pages']=pages
         
         payload['test']=test
