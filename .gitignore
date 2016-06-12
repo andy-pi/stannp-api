@@ -7,6 +7,9 @@ __pycache__/
 *.so
 
 # Distribution / packaging
+postcard.py
+test.jpg
+test.pdf
 .Python
 env/
 build/

@@ -4,14 +4,18 @@ import base64
 class StannpClient():
 
     def __init__( self, api_key ):
+        '''
+        Sets the API key for the class instance
+        '''
         self.api_key = api_key
 
-    def perform_request( self, endpoint_url, payload, files, typeofr):
+    def perform_request( self, endpoint_url, payload, files, typeofr): 
         '''
         Performs a generic API request and returns the JSON response
         '''
-        if (typeofr == "get"): r = requests.get( endpoint_url), auth=(self.api_key,"") )
-        if (typeofr == "post"): r = requests.post( endpoint_url, data=payload, files=files, auth=(self.api_key,""))
+
+        if (typeofr == "get"): r = requests.get( endpoint_url, auth=(self.api_key,"") )
+        if (typeofr == "post"): r = requests.post( endpoint_url, data=payload, files=files, auth=(self.api_key,"")) 
         print r.request.headers
         return r.json()
 
@@ -84,7 +88,7 @@ class StannpClient():
         
     def new_recipient(self, group_id, on_duplicate, recipient):
         '''
-        group_id 	    int 	The group ID you wish to add the data to.
+        group_id        int 	The group ID you wish to add the data to.
         on_duplicate 	string 	What to do if a duplicate is found (update/ignore/duplicate)
         firstname   	string 	Recipients first name
         lasttname   	string 	Recipients last name
@@ -93,9 +97,10 @@ class StannpClient():
         city        	string 	Address city
         postcode    	string 	Address postal code
         country     	string 	ISO 3166-1 Alpha 2 Country Code (GB,US,FR...)
-        ? 	            ? 	    If you have added custom fields to your recipients you can also add them as parameters when added new recipient records
+        ?               ? 	    If you have added custom fields to your recipients you can also add them as parameters when added new recipient records
         
-        The API will return a response to say if the request was successful or not. If successful the new recipients ID will be returned along with whether the address can be validated or not. 
+        The API will return a response to say if the request was successful or not.
+        If successful the new recipients ID will be returned along with whether the address can be validated or not. 
         '''
         payload={}
         payload['title']=recipient['title']
@@ -136,14 +141,17 @@ class StannpClient():
         return self.perform_request("https://dash.stannp.com/api/v1/recipients/delete", payload, files=None, typeofr="post")
 
     def send_postcard(self, size, test, recipient, front, back, message, signature):
-        '''
+        '''Sends a postcard and returns a PDF preview
+        
         size        mandatory 	Either "A5" or "A6"
-        test 	    optional 	If test is set to true then a sample PDF file will be produced but the item will never be dispatched and no charge will be taken.
-        recipient 	mandatory 	Either an ID of an existing recipient or a new recipient array.
-        front 	    mandatory 	An image for the front. This can be either a URL, a file or a base64 encoded string. Supported file types are JPG or PDF
-        back 	    optional 	An image for the back. This can be either a URL, a file or a base64 encoded string. Supported file types are JPG or PDF
-        message 	optional 	A message on the back of the card. If using a back image this message will be overlaid on top
-        signature   optional    An image which will be placed in the signature location. The image can be either a URL or a file or a base64 encoded string. This must be a JPG file with a 768 x 118 pixels resolution
+        test 	    optional 	If test is set to true then a sample PDF file will be produced but not dispatched and not charged.
+        recipient   mandatory 	Either an ID of an existing recipient or a new recipient array.
+        front 	    mandatory 	An image for the front. This can be either a URL, a file or a base64 encoded string. JPG or PDF
+        back 	    optional 	An image for the back. This can be either a URL, a file or a base64 encoded string.  JPG or PDF
+        message     optional 	A message on the back of the card. If using a back image this message will be overlaid on top
+        signature   optional    An image which will be placed in the signature location.
+                                The image can be either a URL or a file or a base64 encoded string.
+                                This must be a JPG file with a 768 x 118 pixels resolution
         '''
         
         payload={}
@@ -159,29 +167,32 @@ class StannpClient():
         
         
     def send_letter(self, test, template, recipient, background, pages, pdforhtml):
-        '''
+        '''Sends a letter and returns a PDF preview
+        
         ? NOT WORKING WITH PDF FILES
-        test        optional	If test is set to true then a sample PDF file will be produced but the item will never be dispatched and no charge will be taken.
+        test        optional	If true then a sample PDF file will be produced but the item will not be dispatched or charged for.
         template 	optional 	An ID of a template already set up on the platform.
         recipient 	mandatory 	Either an ID of an existing recipient or a new recipient array.
-        background 	optional 	A letter heading design or a file for the background of every page. This can be either a URL, a file or a base64 encoded string. Supported file types are JPG or PDF.
-        pages 	    optional 	The text content for each page of the letter. This can be a string containing basic HTML or a PDF file. Each page can be separated by sending an array for example: pages[0]="page 1"&pages[1]="page 2". However PDF files with multiple pages will be recognised. This value is not required if a template is being used. 
+        background 	optional 	A letter heading for the background of every page. 
+                                This can be either a URL, a file or a base64 encoded string. JPG or PDF.
+        pages 	    optional 	The text content for each page of the letter. This can be a string containing basic HTML or a PDF file.
+                                Each page can be separated by sending an array for example: pages[0]="page 1"&pages[1]="page 2".
+                                PDF files with multiple pages will be recognised. Not required if a template is being used. 
+        pdforhtml   mandatory   Selects whether the string passed to pages is a filename for PDF or HTML string
         '''
         
         payload={}
+        payload=self.add_recipient_to_payload(recipient)
+        
         if pdforhtml=="pdf":
-            files= {'pages': open(pages, 'rb')}
+            files= {'pages': ('pages.pdf', open(pages, 'rb'), 'application/pdf')}
         else:
             payload['pages']=pages
-
-        #payload['pages']= {'pages': open(pages, 'rb')}
         
-        payload=self.add_recipient_to_payload(recipient)
         payload['test']=test
         if background is not None: payload['background'] = self.base64_encode_file(background)
         if template is not None: payload['template']=template
-        #print payload
-        
+
         return self.perform_request( "https://dash.stannp.com/api/v1/letters/create", payload, files=files, typeofr="post")
         
         
@@ -194,7 +205,7 @@ class StannpClient():
         payload['recipient[address2]']=recipient['address2']
         payload['recipient[city]']=recipient['city']
         payload['recipient[postcode]']=recipient['postcode']
-        payload['recipient[country]']='GB'
+        payload['recipient[country]']=recipient['country']
         
         return payload
         
