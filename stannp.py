@@ -110,7 +110,6 @@ class StannpClient():
         payload['country']=recipient['country']
         payload['group_id']=group_id
         payload['on_duplicate']=on_duplicate
-        print payload
         return self.perform_request("https://dash.stannp.com/api/v1/recipients/new", payload, files=None, typeofr="post")
 
     def list_recipients(self):
