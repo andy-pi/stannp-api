@@ -1,0 +1,121 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module stannp</title>
+<meta charset="utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>stannp</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/ubuntu/workspace/stannp-api/stannp.py">/home/ubuntu/workspace/stannp-api/stannp.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="base64.html">base64</a><br>
+</td><td width="25%" valign=top><a href="requests.html">requests</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="stannp.html#StannpClient">StannpClient</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="StannpClient">class <strong>StannpClient</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="StannpClient-__init__"><strong>__init__</strong></a>(self, api_key)</dt><dd><tt>Sets&nbsp;the&nbsp;API&nbsp;key&nbsp;for&nbsp;the&nbsp;class&nbsp;instance</tt></dd></dl>
+
+<dl><dt><a name="StannpClient-add_recipient_to_payload"><strong>add_recipient_to_payload</strong></a>(self, recipient)</dt></dl>
+
+<dl><dt><a name="StannpClient-base64_encode_file"><strong>base64_encode_file</strong></a>(self, filepath)</dt></dl>
+
+<dl><dt><a name="StannpClient-delete_campaign"><strong>delete_campaign</strong></a>(self, campaign_id)</dt><dd><tt>Deletes&nbsp;a&nbsp;the&nbsp;specified&nbsp;campaign&nbsp;and&nbsp;returns&nbsp;a&nbsp;message</tt></dd></dl>
+
+<dl><dt><a name="StannpClient-delete_recipient"><strong>delete_recipient</strong></a>(self, id)</dt><dd><tt>Deletes&nbsp;the&nbsp;recipient&nbsp;specified</tt></dd></dl>
+
+<dl><dt><a name="StannpClient-get_balance"><strong>get_balance</strong></a>(self)</dt><dd><tt>Returns&nbsp;the&nbsp;Stannp&nbsp;Account&nbsp;balance&nbsp;in&nbsp;JSON&nbsp;format</tt></dd></dl>
+
+<dl><dt><a name="StannpClient-get_campaign"><strong>get_campaign</strong></a>(self, campaign_id)</dt><dd><tt>Returns&nbsp;a&nbsp;the&nbsp;specified&nbsp;campaign&nbsp;in&nbsp;JSON&nbsp;format</tt></dd></dl>
+
+<dl><dt><a name="StannpClient-get_groups"><strong>get_groups</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;recipient&nbsp;groups&nbsp;in&nbsp;JSON&nbsp;format</tt></dd></dl>
+
+<dl><dt><a name="StannpClient-get_recipient"><strong>get_recipient</strong></a>(self, id)</dt><dd><tt>Returns&nbsp;the&nbsp;recipient&nbsp;specified&nbsp;in&nbsp;JSON&nbsp;format</tt></dd></dl>
+
+<dl><dt><a name="StannpClient-list_campaigns"><strong>list_campaigns</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;campaigns&nbsp;in&nbsp;JSON&nbsp;format</tt></dd></dl>
+
+<dl><dt><a name="StannpClient-list_recipients"><strong>list_recipients</strong></a>(self)</dt><dd><tt>Returns&nbsp;a&nbsp;list&nbsp;of&nbsp;all&nbsp;recipients&nbsp;in&nbsp;JSON&nbsp;format</tt></dd></dl>
+
+<dl><dt><a name="StannpClient-new_campaign"><strong>new_campaign</strong></a>(self, name, typeofc, code)</dt><dd><tt>Creates&nbsp;a&nbsp;new&nbsp;campaign&nbsp;given&nbsp;a&nbsp;name,&nbsp;and&nbsp;type&nbsp;of&nbsp;campaign,&nbsp;from&nbsp;the&nbsp;following:<br>
+a6-postcard&nbsp;|&nbsp;a5-postcard&nbsp;|&nbsp;dl-postcard&nbsp;|&nbsp;letter-dl</tt></dd></dl>
+
+<dl><dt><a name="StannpClient-new_group"><strong>new_group</strong></a>(self, name)</dt><dd><tt>Creates&nbsp;a&nbsp;new&nbsp;recipient&nbsp;group&nbsp;with&nbsp;the&nbsp;specified&nbsp;name,&nbsp;with&nbsp;the&nbsp;result&nbsp;returned&nbsp;in&nbsp;JSON&nbsp;format</tt></dd></dl>
+
+<dl><dt><a name="StannpClient-new_recipient"><strong>new_recipient</strong></a>(self, group_id, on_duplicate, recipient)</dt><dd><tt>Creates&nbsp;a&nbsp;new&nbsp;recipient,&nbsp;provided&nbsp;the&nbsp;following&nbsp;information<br>
+&nbsp;<br>
+group_id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;group&nbsp;ID&nbsp;you&nbsp;wish&nbsp;to&nbsp;add&nbsp;the&nbsp;data&nbsp;to.<br>
+on_duplicate&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;What&nbsp;to&nbsp;do&nbsp;if&nbsp;a&nbsp;duplicate&nbsp;is&nbsp;found&nbsp;(update/ignore/duplicate)<br>
+firstname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;Recipients&nbsp;first&nbsp;name<br>
+lasttname&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;Recipients&nbsp;last&nbsp;name<br>
+address1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;Address&nbsp;line&nbsp;1<br>
+address2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;Address&nbsp;line&nbsp;2<br>
+city&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;Address&nbsp;city<br>
+postcode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;Address&nbsp;postal&nbsp;code<br>
+country&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;ISO&nbsp;3166-1&nbsp;Alpha&nbsp;2&nbsp;Country&nbsp;Code&nbsp;(GB,US,FR...)<br>
+?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;you&nbsp;have&nbsp;added&nbsp;custom&nbsp;fields&nbsp;to&nbsp;your&nbsp;recipients&nbsp;you&nbsp;can&nbsp;also&nbsp;add&nbsp;them&nbsp;as&nbsp;parameters&nbsp;when&nbsp;added&nbsp;new&nbsp;recipient&nbsp;records<br>
+&nbsp;<br>
+The&nbsp;API&nbsp;will&nbsp;return&nbsp;a&nbsp;response&nbsp;to&nbsp;say&nbsp;if&nbsp;the&nbsp;request&nbsp;was&nbsp;successful&nbsp;or&nbsp;not.<br>
+If&nbsp;successful&nbsp;the&nbsp;new&nbsp;recipients&nbsp;ID&nbsp;will&nbsp;be&nbsp;returned&nbsp;along&nbsp;with&nbsp;whether&nbsp;the&nbsp;address&nbsp;can&nbsp;be&nbsp;validated&nbsp;or&nbsp;not.</tt></dd></dl>
+
+<dl><dt><a name="StannpClient-perform_request"><strong>perform_request</strong></a>(self, endpoint_url, payload, files, typeofr)</dt><dd><tt>Performs&nbsp;a&nbsp;generic&nbsp;API&nbsp;request&nbsp;and&nbsp;returns&nbsp;the&nbsp;JSON&nbsp;response</tt></dd></dl>
+
+<dl><dt><a name="StannpClient-send_letter"><strong>send_letter</strong></a>(self, test, template, recipient, background, pages, pdforhtml)</dt><dd><tt>Sends&nbsp;a&nbsp;letter&nbsp;and&nbsp;returns&nbsp;URL&nbsp;for&nbsp;a&nbsp;PDF&nbsp;preview.&nbsp;Note&nbsp;the&nbsp;first&nbsp;page&nbsp;has&nbsp;the&nbsp;address&nbsp;printed&nbsp;on&nbsp;it.<br>
+&nbsp;<br>
+test&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;optional&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;true&nbsp;then&nbsp;a&nbsp;sample&nbsp;PDF&nbsp;file&nbsp;will&nbsp;be&nbsp;produced&nbsp;but&nbsp;the&nbsp;item&nbsp;will&nbsp;not&nbsp;be&nbsp;dispatched&nbsp;or&nbsp;charged&nbsp;for.<br>
+template&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;optional&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;ID&nbsp;of&nbsp;a&nbsp;template&nbsp;already&nbsp;set&nbsp;up&nbsp;on&nbsp;the&nbsp;platform.<br>
+recipient&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mandatory&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Either&nbsp;an&nbsp;ID&nbsp;of&nbsp;an&nbsp;existing&nbsp;recipient&nbsp;or&nbsp;a&nbsp;new&nbsp;recipient&nbsp;array.<br>
+background&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;optional&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;letter&nbsp;heading&nbsp;for&nbsp;the&nbsp;background&nbsp;of&nbsp;every&nbsp;page.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;can&nbsp;be&nbsp;either&nbsp;a&nbsp;URL,&nbsp;a&nbsp;file&nbsp;or&nbsp;a&nbsp;base64&nbsp;encoded&nbsp;string.&nbsp;JPG&nbsp;or&nbsp;PDF.<br>
+pages&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;optional&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;text&nbsp;content&nbsp;for&nbsp;each&nbsp;page&nbsp;of&nbsp;the&nbsp;letter.&nbsp;This&nbsp;can&nbsp;be&nbsp;a&nbsp;string&nbsp;containing&nbsp;basic&nbsp;HTML&nbsp;or&nbsp;a&nbsp;PDF&nbsp;file.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Each&nbsp;page&nbsp;can&nbsp;be&nbsp;separated&nbsp;by&nbsp;sending&nbsp;an&nbsp;array&nbsp;for&nbsp;example:&nbsp;pages[0]="page&nbsp;1"&amp;pages[1]="page&nbsp;2".<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PDF&nbsp;files&nbsp;with&nbsp;multiple&nbsp;pages&nbsp;will&nbsp;be&nbsp;recognised.&nbsp;Not&nbsp;required&nbsp;if&nbsp;a&nbsp;template&nbsp;is&nbsp;being&nbsp;used.&nbsp;<br>
+pdforhtml&nbsp;&nbsp;&nbsp;mandatory&nbsp;&nbsp;&nbsp;Selects&nbsp;whether&nbsp;the&nbsp;string&nbsp;passed&nbsp;to&nbsp;pages&nbsp;is&nbsp;a&nbsp;filename&nbsp;for&nbsp;PDF&nbsp;or&nbsp;HTML&nbsp;string</tt></dd></dl>
+
+<dl><dt><a name="StannpClient-send_postcard"><strong>send_postcard</strong></a>(self, size, test, recipient, front, back, message, signature)</dt><dd><tt>Sends&nbsp;a&nbsp;postcard&nbsp;and&nbsp;returns&nbsp;an&nbsp;URL&nbsp;of&nbsp;PDF&nbsp;preview<br>
+&nbsp;<br>
+size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mandatory&nbsp;&nbsp;&nbsp;Either&nbsp;"A5"&nbsp;or&nbsp;"A6"<br>
+test&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;optional&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;test&nbsp;is&nbsp;set&nbsp;to&nbsp;true&nbsp;then&nbsp;a&nbsp;sample&nbsp;PDF&nbsp;file&nbsp;will&nbsp;be&nbsp;produced&nbsp;but&nbsp;not&nbsp;dispatched&nbsp;and&nbsp;not&nbsp;charged.<br>
+recipient&nbsp;&nbsp;&nbsp;mandatory&nbsp;&nbsp;&nbsp;Either&nbsp;an&nbsp;ID&nbsp;of&nbsp;an&nbsp;existing&nbsp;recipient&nbsp;or&nbsp;a&nbsp;new&nbsp;recipient&nbsp;array.<br>
+front&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mandatory&nbsp;&nbsp;&nbsp;An&nbsp;image&nbsp;for&nbsp;the&nbsp;front.&nbsp;This&nbsp;can&nbsp;be&nbsp;either&nbsp;a&nbsp;URL,&nbsp;a&nbsp;file&nbsp;or&nbsp;a&nbsp;base64&nbsp;encoded&nbsp;string.&nbsp;JPG&nbsp;or&nbsp;PDF<br>
+back&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;optional&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;image&nbsp;for&nbsp;the&nbsp;back.&nbsp;This&nbsp;can&nbsp;be&nbsp;either&nbsp;a&nbsp;URL,&nbsp;a&nbsp;file&nbsp;or&nbsp;a&nbsp;base64&nbsp;encoded&nbsp;string.&nbsp;&nbsp;JPG&nbsp;or&nbsp;PDF<br>
+message&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;optional&nbsp;&nbsp;&nbsp;&nbsp;A&nbsp;message&nbsp;on&nbsp;the&nbsp;back&nbsp;of&nbsp;the&nbsp;card.&nbsp;If&nbsp;using&nbsp;a&nbsp;back&nbsp;image&nbsp;this&nbsp;message&nbsp;will&nbsp;be&nbsp;overlaid&nbsp;on&nbsp;top<br>
+signature&nbsp;&nbsp;&nbsp;optional&nbsp;&nbsp;&nbsp;&nbsp;An&nbsp;image&nbsp;which&nbsp;will&nbsp;be&nbsp;placed&nbsp;in&nbsp;the&nbsp;signature&nbsp;location.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;image&nbsp;can&nbsp;be&nbsp;either&nbsp;a&nbsp;URL&nbsp;or&nbsp;a&nbsp;file&nbsp;or&nbsp;a&nbsp;base64&nbsp;encoded&nbsp;string.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This&nbsp;must&nbsp;be&nbsp;a&nbsp;JPG&nbsp;file&nbsp;with&nbsp;a&nbsp;768&nbsp;x&nbsp;118&nbsp;pixels&nbsp;resolution</tt></dd></dl>
+
+<dl><dt><a name="StannpClient-validate_address"><strong>validate_address</strong></a>(self, address)</dt><dd><tt>Validate&nbsp;an&nbsp;address&nbsp;/&nbsp;recipient,&nbsp;given&nbsp;the&nbsp;supplied&nbsp;information:<br>
+&nbsp;<br>
+company&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;Company&nbsp;name<br>
+address1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;Address&nbsp;line&nbsp;1<br>
+address2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;Address&nbsp;line&nbsp;2<br>
+address3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;Address&nbsp;line&nbsp;3<br>
+city&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Address&nbsp;city<br>
+postcode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;Address&nbsp;postal&nbsp;code<br>
+country&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;string&nbsp;&nbsp;ISO&nbsp;3166-1&nbsp;Alpha&nbsp;2&nbsp;Country&nbsp;Code&nbsp;(GB,US,FR...)</tt></dd></dl>
+
+</td></tr></table></td></tr></table>
+</body></html>
