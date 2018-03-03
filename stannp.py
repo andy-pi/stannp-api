@@ -1,6 +1,5 @@
-import requests
 import base64
-
+import requests
 
 class StannpClient():
 
@@ -14,8 +13,8 @@ class StannpClient():
         '''
         Performs a generic API request and returns the JSON response
         '''
-        if (typeofr == "get"): r = requests.get(endpoint_url, auth=(self.api_key, ""))
-        if (typeofr == "post"): r = requests.post(endpoint_url, data=payload, files=files, auth=(self.api_key, ""))
+        if typeofr == "get": r = requests.get(endpoint_url, auth=(self.api_key, ""))
+        if typeofr == "post": r = requests.post(endpoint_url, data=payload, files=files, auth=(self.api_key, ""))
         return r.json()
 
     def get_balance(self):
@@ -119,19 +118,19 @@ class StannpClient():
         '''
         return self.perform_request("https://dash.stannp.com/api/v1/recipients/list", payload=None, files=None, typeofr="get")
 
-    def get_recipient(self, id):
+    def get_recipient(self, id_no):
         '''
         Returns the recipient specified in JSON format
         '''
-        address = "https://dash.stannp.com/api/v1/recipients/get/" + str(id) + "?api_key=" + self.api_key
+        address = "https://dash.stannp.com/api/v1/recipients/get/" + str(id_no) + "?api_key=" + self.api_key
         return self.perform_request(address, payload=None, files=None, typeofr="get")
 
-    def delete_recipient(self, id):
+    def delete_recipient(self, id_no):
         '''
         Deletes the recipient specified
         '''
         payload = {}
-        payload['id'] = id
+        payload['id'] = id_no
         return self.perform_request("https://dash.stannp.com/api/v1/recipients/delete", payload, files=None, typeofr="post")
 
     def send_postcard(self, size, test, recipient, front, back, message, signature):
@@ -200,9 +199,9 @@ class StannpClient():
         return payload
 
     def base64_encode_file(self, filepath):
-        file = open(filepath, 'r')
+        file_to_enc = open(filepath, 'rb')
         try:
-            encoded_file = base64.b64encode(file.read())
+            encoded_file = base64.b64encode(file_to_enc.read())
             return encoded_file
-        except Exception, e:
-            raise e
+        except Exception as error:
+            raise error
