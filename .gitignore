@@ -8,8 +8,8 @@ __pycache__/
 
 # Distribution / packaging
 postcard.py
-test.jpg
-test.pdf
+*.jpg
+*.pdf
 .Python
 env/
 build/

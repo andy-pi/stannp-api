@@ -4,14 +4,13 @@
 Stannp allows you to send snail mail via a web api. It includes postcards and letters. See stannp.com for more details.  
 
 ## Installation
-No dependencies - just clone the repo:  
 ```
-git clone https://github.com/andy-pi/stannp-api.git
+pip install stannp
 ```  
 
 # Example Usage
 
-## Initiatalisation
+## Initialisation
 import the module and create an instance with your Stannp API Key  
 ```
 from stannp import StannpClient
